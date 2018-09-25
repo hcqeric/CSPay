@@ -14,9 +14,11 @@ export const orderPay = (params, datas) => new Request().require({api: url.order
 
 export const getDiscountList = (params, datas, isShowLoading) => new Request().require({api: url.discountList, param:params, data:datas, loadingVisble: isShowLoading}); //获取优惠券列表
 
-export const useCoupon = (id, params) => new Request().require({api: url.useCoupon + id, param:params, methods: 'GET'}); //使用优惠券
+export const useCoupon = (userId, orderNum, params) => new Request().require({api: url.useCoupon + userId + '/' + orderNum, param: params, methods: 'GET'}); //使用优惠券
 
-export const getUserInfo = (userId, params) => new Request().require({api: url.userInfo + userId, methods: 'GET'}); //获取用户信息
+export const getUserInfo = (userId) => new Request().require({api: url.userInfo + userId, methods: 'GET'}); //获取用户信息
+
+export const getList = ( params,datas) => new Request().require({api: url.list, param : params, data: datas}); //获取兑换记录列表
 
 
 

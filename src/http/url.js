@@ -15,5 +15,6 @@ export default {
   orderPay: '/app/order/pay',
   discountList: '/app/order/detalList',
   useCoupon: '/app/order/useCoupon/',
-  userInfo: '/app/user/info/'
+  userInfo: '/app/user/info/',
+  list:'/app/order/list'
 }
