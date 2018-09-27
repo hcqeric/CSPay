@@ -8,13 +8,33 @@ import {
   getLocalStorage,
   removeLocalStorage
 } from '../custom/mixin';
+
 class Request {
-  constructor(){
-    this.Domain = url.baseUrl;
+  constructor(baseUrl = url.baseUrl){
+    this.Domain = baseUrl
   }
+
   require(options) {
     if (!options.api) throw new Error('api 不能为空');
     if (!options.param) { options.param = {} }
+
+    //动态路由参数设置
+    if (!options.restParam) {
+      options.restParam = {}
+    }
+    else{
+      console.log(options.api)
+      let restArr = options.api.split('/');
+      console.log(restArr)
+      restArr.forEach((item, index)=>{
+        if (item.startsWith(':')){
+          let key = item.substring(1)
+          restArr[index] = options.restParam[key]
+        }
+      })
+      options.api = restArr.join('/')
+    }
+    //动态路由参数设置
     if (!options.data) { options.data = {} }
     if (!options.methods) { options.methods = 'POST' }; //不传递方法默认为POST
     if (!options.loadingVisble) { options.loadingVisble = false }; // 不传递默认开启loading

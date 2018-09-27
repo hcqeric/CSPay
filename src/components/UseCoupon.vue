@@ -21,10 +21,10 @@
 </template>
 
 <script>
-  import {useCoupon,getUserInfo,getList} from "../http/getData";
+  import {useCoupon,getUserInfo} from "../http/getData";
   import MainHeader from '@/components/view/MainHeader'
   import {MessageBox, Toast} from 'mint-ui'
-  import {getLocalStorage} from "../custom/mixin";
+
 
   export default {
     name: "UseCoupon",
@@ -83,8 +83,6 @@
         this.userInfo.mobile = response.result.mobile
         this.userInfo.createTime = response.result.createTime
       })
-
-
     }
   }
 </script>

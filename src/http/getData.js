@@ -20,6 +20,12 @@ export const getUserInfo = (userId) => new Request().require({api: url.userInfo 
 
 export const getList = ( params,datas) => new Request().require({api: url.list, param : params, data: datas}); //获取兑换记录列表
 
+// 增加支持多站点接口，通过构造函数传入非主站点接口的baseUrl
+export const getExchangeDetail = () => new Request("https://www.baidu.com").require({api: "/app/order/info/109"}); //获取兑换详情
+
+// 增加支持动态路由，通过restParam传入动态数据，json格式
+export const testUseCoupon = (restParam, params) => new Request().require({api: url.testUseCoupon,restParam: restParam, param: params, methods: 'GET'}); //使用优惠券
+
 
 
 
