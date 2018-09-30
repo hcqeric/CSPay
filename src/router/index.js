@@ -76,7 +76,7 @@ let router = new Router({
       component: AddMerchantStore
     },
     {
-      path: '/cashiermgr',
+      path: '/cashiermgr/:id',
       name: 'cashiermgr',
       component: CashierManager
     },
@@ -86,7 +86,7 @@ let router = new Router({
       component: CashierMgrMerchant
     },
     {
-      path: '/addcashier',
+      path: '/addcashier/:id',
       name: 'addcashier',
       component: AddCashier
     }

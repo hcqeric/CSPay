@@ -1,3 +1,7 @@
+export const getToken = () =>{
+  return 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNTM2MTg1ODI3NyIsImV4cCI6MTUzODcyNjkwNCwidXNlcklkIjoxMDQxNTk2MTc0NTM4MTMzNTA1LCJjcmVhdGVkIjoxNTM4MTIyMTA0Njg2fQ.d6VcsAHXN3aUAByttmZ8aCIjN6H3NOaf4zItEQwenFvGcGcz9zknARCI82OeOEGnRm3Dd7MIwrQ3V2hndsnSng'
+}
+
 export const setLocalStorage = (key, value) => {
   if (!key) return;
   let val = value;

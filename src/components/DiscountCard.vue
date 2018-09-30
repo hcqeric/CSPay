@@ -85,7 +85,6 @@
         },
       methods:{
         loadBottom(){
-          console.log(this.totalCount - parseInt(this.pageInfo.limit) * this.page)
           if( this.totalCount - parseInt(this.pageInfo.limit) * this.pageInfo.page > 0){
             this.page++
             this.pageInfo.page = this.page + ''

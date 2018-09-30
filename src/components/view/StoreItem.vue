@@ -20,6 +20,7 @@
 </template>
 
 <script>
+  import {Toast} from 'mint-ui'
   import StoreHeader from '@/components/view/StoreHeader'
     export default {
         name: "StoreItem",
@@ -31,7 +32,11 @@
       },
       methods:{
         setManager(){
-          this.$router.push('/setmanager')
+          Toast({
+            message: '功能暂未开放，敬请期待',
+            duration: 1500
+          })
+          // this.$router.push('/setmanager')
         }
       }
     }

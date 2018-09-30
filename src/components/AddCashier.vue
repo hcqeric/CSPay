@@ -6,28 +6,73 @@
         <div class="store-add-header"></div>
         <div class="store-add-msg">
           <div class="store-add-msg-item">
-            <span><i>*</i>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</span>
-            <input placeholder="请输入名称"/>
+            <span><i>*</i>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span>
+            <input placeholder="请输入姓名" v-model="cashierName"/>
           </div>
           <div class="store-add-msg-item">
             <span><i>*</i>联系电话：</span>
-            <input placeholder="请输入联系电话"/>
+            <input placeholder="请输入联系电话" v-model="cashierMobile"/>
           </div>
         </div>
       </div>
       <div class="user-pay">
-        <button>保存收银员</button>
+        <button @click="saveCashier">保存收银员</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import {createClerk} from "../http/getData";
+  import {Toast} from 'mint-ui'
   import MainHeader from '@/components/view/MainHeader'
     export default {
       name: "AddCashier",
+      data(){
+        return {
+          cashierName: '',
+          cashierMobile: '',
+          shopId: ''
+        }
+      },
       components: {
         MainHeader
+      },
+      methods:{
+        saveCashier(){
+          if (!this.cashierName || !this.cashierMobile) {
+            Toast({
+              message: '标星项为必填！',
+              position: 'middle',
+              duration: 1000
+            })
+            return false
+          }
+          if(!(/^1(3|4|5|7|8)\d{9}$/.test(this.cashierMobile))) {
+            Toast({
+              message: '手机号码格式不正确！',
+              position: 'middle',
+              duration: 1000
+            })
+            return false
+          }
+          createClerk({
+            shopId: this.shopId,
+            name: this.cashierName,
+            mobile: this.cashierMobile
+          }).then(response => {
+            Toast({
+              message: '添加收银员成功！',
+              position: 'middle',
+              duration: 1000
+            })
+            this.$router.push(`/cashiermgr/${this.shopId}`)
+          })
+        }
+      },
+      mounted(){
+        let {id} = this.$route.params
+        this.shopId = id
       }
     }
 </script>

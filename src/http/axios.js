@@ -51,7 +51,8 @@ class Request {
             url: options.api,
             baseURL: this.Domain,
             headers: {
-                'Content-Type':'application/json;charset=UTF-8'
+                'Content-Type':'application/json;charset=UTF-8',
+                'Authorization': 'Bearer ' + getLocalStorage("Authorization")
             },
             params:options.param,
             data:options.data
@@ -72,7 +73,6 @@ class Request {
                 return resolve(response.data)
             }
         },error => {
-          console.log(aaaa)
             Indicator.close();
             Toast({
                 message: error.msg,
@@ -80,7 +80,6 @@ class Request {
             });
             return reject()
         }).catch(error=>{
-          // console.log(error.data)
           Toast({
             message: '服务器出错，请稍后再试',
             position: 'middle',
