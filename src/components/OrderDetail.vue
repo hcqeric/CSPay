@@ -1,6 +1,7 @@
 <template>
-  <div class="order-container" v-if="orderInfo.pocsTotal">
+  <div class="order-container" >
     <MainHeader title="兑换详情" :showBack="true"></MainHeader>
+    <div v-if="orderInfo.pocsTotal != ''">
     <div class="order-msg" >
       <div class="msg-item">
         <span>下单时间</span>
@@ -10,7 +11,7 @@
         <span>订单编号</span>
         <span>{{orderInfo.orderNum}}</span>
       </div>
-      <div class="msg-item">
+      <div class="msg-item" v-if="orderInfo.pocsTotal != ''">
         <span>当前积分</span>
         <span>{{orderInfo.pocsTotal| moneyFormat('', 5)}}</span>
       </div>
@@ -51,6 +52,8 @@
         <button @click="goToPay">确定</button>
       </div>
     </div>
+    </div>
+
 
     <mt-popup v-model="popupAddressVisible" position="bottom" class="mint-popup-address">
       <mt-picker :slots="addressSlots" @change="onAddressChange" :visible-item-count="5" value-key="name"
@@ -61,7 +64,6 @@
         </div>
       </mt-picker>
     </mt-popup>
-
     <div v-if="showError">
       <ErrorLoaded></ErrorLoaded>
     </div>
@@ -290,14 +292,16 @@
       let {id} = this.$route.params
       let auth = getLocalStorage("Authorization")
       this.Authorization = auth
-      // this.Authorization = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxODk3MjM3NjMyMiIsImV4cCI6MTUzNzg1NjE3MCwidXNlcklkIjoxMDQwNTE4OTg4OTkzNDMzNjAxLCJjcmVhdGVkIjoxNTM3MjUxMzcwMTc5fQ.d9iGG8a2FiNm3wLnXFsVlO_aUbYyMDSaxcUV3WHbOtaSemInQZfrRk5YOpRA9G78-Lfo9cncbCKTv-8gy4bqzw"
+      this.Authorization = " eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNTM2MTg1ODI3OCIsImV4cCI6MTU0MDQ1OTY5MywidXNlcklkIjoxMDQ2MjkwMzU2ODkyNjAyMzcwLCJjcmVhdGVkIjoxNTM5ODU0ODkzNDA0fQ.5RAWHjScaUSfku4Rsnlmy-YH1JS82vF1t_RcCpDF00nVzgwxoM0N06AVvFTHBxdI-iFBo5vXoo4Yqkwd7zcdUA"
       createOrder({
         Authorization: this.Authorization
       },{
         goodsId: id
       }).then(response=>{
-        this.orderInfo.pocsTotal = response.result.pocsTotal
-        this.orderInfo.pocsPrice = response.result.goods.pocsPrice
+        if (response.result.pocsTotal != undefined){
+          this.orderInfo.pocsTotal = response.result.pocsTotal
+        }
+        this.orderInfo.pocsPrice = response.result.order.pocsAmt
         this.orderInfo.goodsName = response.result.goods.name
         this.orderInfo.goodsImg = response.result.goods.goodsImg
         this.orderInfo.orderNum = response.result.order.orderNum
