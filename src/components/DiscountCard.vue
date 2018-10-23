@@ -1,6 +1,6 @@
 <template>
     <div class="dis-container">
-      <MainHeader title="优惠券" ></MainHeader>
+      <MainHeader title="优惠券" :showBack="true"></MainHeader>
       <div class="dis-content">
         <div class="dis-tabs">
           <div class="dis-tab-item" :class="current == 0 ? 'current' : ''" @click="changeTab(0)">

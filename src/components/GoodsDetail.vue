@@ -1,6 +1,6 @@
 <template>
   <div class="detail-container" v-if="goodsInfo">
-    <MainHeader  title="商品详情" ></MainHeader>
+    <MainHeader  title="商品详情" :showBack="true"></MainHeader>
     <div class="detail-content">
       <div class="detail-banner">
         <img :src="goodsInfo.goodsImg" alt="">

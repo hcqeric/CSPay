@@ -15,7 +15,7 @@
     </div>
     <div class="goods-list">
       <p class="list-title">
-        商品中心
+        热门推荐
       </p>
       <div class="list-content">
         <mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore"
