@@ -65,7 +65,7 @@
       </mt-picker>
     </mt-popup>
     <div v-if="showError">
-      <ErrorLoaded></ErrorLoaded>
+      <ErrorLoaded :errorMsg="errorMsg"></ErrorLoaded>
     </div>
   </div>
 
@@ -134,7 +134,8 @@
           createTime: '',
           goodsName: '',
           goodsImg: ''
-        }
+        },
+        errorMsg: ''
       }
     },
     methods:{
@@ -292,7 +293,7 @@
       let {id} = this.$route.params
       let auth = getLocalStorage("Authorization")
       this.Authorization = auth
-      this.Authorization = " eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNTM2MTg1ODI3OCIsImV4cCI6MTU0MDQ1OTY5MywidXNlcklkIjoxMDQ2MjkwMzU2ODkyNjAyMzcwLCJjcmVhdGVkIjoxNTM5ODU0ODkzNDA0fQ.5RAWHjScaUSfku4Rsnlmy-YH1JS82vF1t_RcCpDF00nVzgwxoM0N06AVvFTHBxdI-iFBo5vXoo4Yqkwd7zcdUA"
+      // this.Authorization = " eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNTM2MTg1ODI3OCIsImV4cCI6MTU0MDg5NzY1NCwidXNlcklkIjoxMDQ2MjkwMzU2ODkyNjAyMzcwLCJjcmVhdGVkIjoxNTQwMjkyODU0MTg1fQ.rBwxyWY8hPuLAG5fnYsZqGPdCEfzsL9TXbHJeNkj0r0_oY0u-dCAEI4ONOaFkRTXvmz1BZFHID3aBBbcZIwO4g"
       createOrder({
         Authorization: this.Authorization
       },{
@@ -308,6 +309,7 @@
         this.orderInfo.orderId = response.result.order.id
         this.orderInfo.createTime = response.result.order.createTime
       }).catch(error => {
+        this.errorMsg = error.msg
         this.showError = true
       })
     }

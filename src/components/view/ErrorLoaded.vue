@@ -5,7 +5,7 @@
           o(╥﹏╥)o
         </div>
         <div class="error_text">
-          页面加载出了点问题
+          {{errorMsg}}
         </div>
         <button @click="pageReload">点击重新加载</button>
       </div>
@@ -19,7 +19,10 @@
           pageReload(){
             window.location.reload()
           }
-        }
+        },
+      props: {
+        errorMsg: String
+      }
     }
 </script>
 

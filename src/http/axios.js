@@ -61,7 +61,7 @@ class Request {
             if(response.data.code === 0){ //请求成功
                 return resolve(response.data)
             }else{
-                if(response.data.code === 401){ //TOKEN失效
+                if(response.code === 401){ //TOKEN失效
                   removeLocalStorage(Constants.TOKEN)
                   // router.push('/login')
                 }
@@ -70,7 +70,7 @@ class Request {
                     position: 'middle',
                     duration: 1000
                 });
-                return resolve(response.data)
+                return reject(response.data)
             }
         },error => {
             Indicator.close();
