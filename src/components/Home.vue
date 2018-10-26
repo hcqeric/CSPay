@@ -107,8 +107,8 @@
         },
         getGoodsListByLevel(data){
           getGoodsList(data, false).then(response=>{
-            this.totalCount = response.result.page.totalCount
-            response.result.page.list.map(item=>{
+            this.totalCount = response.data.page.totalCount
+            response.data.page.list.map(item=>{
               this.goodsList.push(item)
             })
           }).catch(error=>{})
@@ -122,15 +122,15 @@
               limit: this.pageInfo.limit,
               queryLevel: this.pageInfo.queryLevel
         },true).then(response => {
-          this.typeList = response.result.typeList
-          if(this.typeList.length == 0 || response.result.typeList == undefined){
+          this.typeList = response.data.typeList
+          if(this.typeList.length == 0 || response.data.typeList == undefined){
             this.showError = true
           }
-          response.result.page.list.map(item=>{
+          response.data.page.list.map(item=>{
             this.goodsList.push(item)
           })
           this.pageInfo.typeId = this.typeList[0].id
-          this.totalCount = response.result.page.totalCount
+          this.totalCount = response.data.page.totalCount
         }).catch(error=>{})
       }
     }

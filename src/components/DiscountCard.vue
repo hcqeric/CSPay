@@ -135,8 +135,8 @@
           getDiscountList({
             Authorization: this.Authorization
           },this.pageInfo, isShowLoading).then(response=>{
-            this.totalCount = response.result.totalCount
-            response.result.list.map(item=>{
+            this.totalCount = response.data.totalCount
+            response.data.list.map(item=>{
               this.$set(item, 'showQRCode', 0)
               this.$set(item, 'hasGenCode', 0)
               this.discountCardList.push(item)

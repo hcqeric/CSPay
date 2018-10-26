@@ -160,9 +160,9 @@
           address: this.addressInfo.address
         }).then(response => {
           Toast({
-            message: response.result.remarks
+            message: response.data.remarks
           })
-          this.$router.replace('/exchange/' + response.result.payStatus)
+          this.$router.replace('/exchange/' + response.data.payStatus)
         })
       },
       //遍历json，返回省级对象数组
@@ -299,15 +299,15 @@
       },{
         goodsId: id
       }).then(response=>{
-        if (response.result.pocsTotal != undefined){
-          this.orderInfo.pocsTotal = response.result.pocsTotal
+        if (response.data.pocsTotal != undefined){
+          this.orderInfo.pocsTotal = response.data.pocsTotal
         }
-        this.orderInfo.pocsPrice = response.result.order.pocsAmt
-        this.orderInfo.goodsName = response.result.goods.name
-        this.orderInfo.goodsImg = response.result.goods.goodsImg
-        this.orderInfo.orderNum = response.result.order.orderNum
-        this.orderInfo.orderId = response.result.order.id
-        this.orderInfo.createTime = response.result.order.createTime
+        this.orderInfo.pocsPrice = response.data.order.pocsAmt
+        this.orderInfo.goodsName = response.data.goods.name
+        this.orderInfo.goodsImg = response.data.goods.goodsImg
+        this.orderInfo.orderNum = response.data.order.orderNum
+        this.orderInfo.orderId = response.data.order.id
+        this.orderInfo.createTime = response.data.order.createTime
       }).catch(error => {
         this.errorMsg = error.msg
         this.showError = true

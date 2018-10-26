@@ -47,8 +47,8 @@
     mounted(){
       let {id} = this.$route.params
       getGoodsDetail(id).then(response=>{
-        this.id = response.result.id
-        this.goodsInfo = response.result
+        this.id = response.data.id
+        this.goodsInfo = response.data
       })
     }
   }

@@ -79,9 +79,9 @@
       this.showDialog()
 
       getUserInfo(this.userId).then(response => {
-        this.userInfo.userId = response.result.userId
-        this.userInfo.mobile = response.result.mobile
-        this.userInfo.createTime = response.result.createTime
+        this.userInfo.userId = response.data.userId
+        this.userInfo.mobile = response.data.mobile
+        this.userInfo.createTime = response.data.createTime
       })
     }
   }

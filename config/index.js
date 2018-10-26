@@ -12,8 +12,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api/v1': {
-        // target: 'http://192.168.0.99:8081'
-        target: 'http://120.79.17.7:8081'
+        target: 'http://192.168.0.99:8081'
+        // target: 'http://120.79.17.7:8081'
       }
     },
 
