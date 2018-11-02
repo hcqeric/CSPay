@@ -180,7 +180,8 @@
     width: 130px;
     height: 130px;
     border-radius: 70px;
-    border: 1px solid #e1e1e1;/*no*/
+    /*border: 1px solid #e1e1e1;!*no*!*/
+    border: none;
   }
   .sort-item>span{
     font-size: 36px;
