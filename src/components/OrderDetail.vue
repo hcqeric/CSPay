@@ -19,7 +19,10 @@
         <span>使用积分</span>
         <span>{{orderInfo.pocsPrice| moneyFormat('', 5)}}</span>
       </div>
-
+      <div class="msg-item">
+        <span>商品数量</span>
+        <span>{{orderInfo.tradeCount}}</span>
+      </div>
     </div>
     <div class="order-goods">
       <div class="order-item-goods">
@@ -87,6 +90,7 @@
     },
     data() {
       return {
+        amount: 1,
         showError: false,
         Authorization: '',
         popupAddressVisible: false,
@@ -127,6 +131,7 @@
           mobile: ''
         },
         orderInfo:{
+          tradeCount: '',
           pocsTotal: '',
           pocsPrice: '',
           orderNum: '',
@@ -290,19 +295,21 @@
       }
     },
     mounted(){
-      let {id} = this.$route.params
+      let {id,amount} = this.$route.params
       let auth = getLocalStorage("Authorization")
       this.Authorization = auth
       // this.Authorization = " eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNTM2MTg1ODI3OCIsImV4cCI6MTU0MDg5NzY1NCwidXNlcklkIjoxMDQ2MjkwMzU2ODkyNjAyMzcwLCJjcmVhdGVkIjoxNTQwMjkyODU0MTg1fQ.rBwxyWY8hPuLAG5fnYsZqGPdCEfzsL9TXbHJeNkj0r0_oY0u-dCAEI4ONOaFkRTXvmz1BZFHID3aBBbcZIwO4g"
       createOrder({
         Authorization: this.Authorization
       },{
-        goodsId: id
+        goodsId: id,
+        tradeCount: amount
       }).then(response=>{
         if (response.data.pocsTotal != undefined){
           this.orderInfo.pocsTotal = response.data.pocsTotal
         }
         this.orderInfo.pocsPrice = response.data.order.pocsAmt
+        this.orderInfo.tradeCount = response.data.order.tradeCount
         this.orderInfo.goodsName = response.data.goods.name
         this.orderInfo.goodsImg = response.data.goods.goodsImg
         this.orderInfo.orderNum = response.data.order.orderNum

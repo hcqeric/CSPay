@@ -25,6 +25,7 @@
             <div class="goods-intro">
               <p class="goods-name">{{item.name}}</p>
               <p class="goods-price">积分兑换：{{item.pocsPrice| moneyFormat('', 5)}}</p>
+
             </div>
           </div>
           <div slot="bottom" class="mint-loadmore-bottom">
@@ -116,6 +117,7 @@
       },
       mounted() {
         let {Authorization} = this.$route.query
+        Authorization = " eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNzY4ODg5NDI1MiIsImV4cCI6MTU0MjI3NjU1NywidXNlcklkIjoxMDUxNzI1NDU1NjQ5OTM1MzYyLCJjcmVhdGVkIjoxNTQxNjcxNzU3NDUxfQ.7NevrrFM4pZGHkbc4e5J5x1FPafcHbH-3hhnGTD7924jCUA3b11ipqMyRMpm72jp-kRh-Qxf2ISrEAfoiHft7g"
         setLocalStorage("Authorization", Authorization)
         getGoodsList({
               page: this.pageInfo.page,
@@ -129,7 +131,7 @@
           response.data.page.list.map(item=>{
             this.goodsList.push(item)
           })
-          this.pageInfo.typeId = this.typeList[0].id
+          // this.pageInfo.typeId = this.typeList[0].id
           this.totalCount = response.data.page.totalCount
         }).catch(error=>{})
       }

@@ -41,7 +41,7 @@ let router = new Router({
       component: ExchangeSuccess
     },
     {
-      path: '/order/:id',
+      path: '/order/:id/:amount',
       name: 'orderdetail',
       component: OrderDetail
     },
