@@ -122,7 +122,7 @@
     vertical-align: middle;
   }
   .mint-swipe {
-    height: 36vh;
+    height: 1080px;
     color: #fff;
     font-size: 30px;
     text-align: center;
